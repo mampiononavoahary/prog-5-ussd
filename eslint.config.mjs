@@ -1,3 +1,5 @@
+
+
 import js from "@eslint/js";
 import globals from "globals";
 import tseslint from "typescript-eslint";
@@ -9,13 +11,18 @@ export default defineConfig([
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
-      globals: globals.node, // Ou globals.browser selon ton cas
+      globals: globals.node,
     },
-    ...js.configs.recommended, // ✅ Utilise la bonne config ici
+    rules: {
+      ...js.configs.recommended.rules,
+      ...tseslint.configs.recommended.rules,
+    },
   },
   {
     files: ["**/*.ts"],
-    ...tseslint.configs.recommended,
+    languageOptions: {
+      parser: tseslint.parser,
+    },
   },
 ]);
 
