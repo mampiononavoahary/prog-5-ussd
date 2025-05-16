@@ -1,12 +1,19 @@
 
 import * as readlineSync from 'readline-sync';
 import { Wallet } from "../core/wallet";
+import {
+  displayMainMenu,
+  displayRechargeOptions,
+  displayCreditBundleOptions,
+  displayMontantRecharger,
+  displayPassword,
+} from "../ui/menu-display";
 
 export class MainMenu {
   private wallet = new Wallet();
 
   show(): void {
-    this.displayMenu();
+    displayMainMenu();
 
     const choice = readlineSync.question("Choisissez une option: ");
 
@@ -42,19 +49,6 @@ export class MainMenu {
     this.show(); // boucle continue
   }
 
-  private displayMenu() {
-    console.log("\n--- MVOLA ---");
-    console.log("1. Acheter Credit ou Offre Yas");
-    console.log("2. Transferer argent(vers toute destination)");
-    console.log("3. Mvola Credit ou Epargne");
-    console.log("4. Retrait d'argent");
-    console.log("5. Paiment Factures & Partenaires");
-    console.log("6. Mon compte");
-    console.log("7. Recevoir de l'argent");
-    console.log("8. Banques et Micro-Finances");
-    console.log("0. Quitter");
-  }
-
   private credit() {
     const montantStr = readlineSync.question("Montant à créditer: ");
     this.wallet.credit(parseFloat(montantStr));
@@ -68,32 +62,64 @@ export class MainMenu {
     console.log("Transfert réussi !");
   }
 
+  private creditPourMonNumero() {
+    displayRechargeOptions();
+    const creditChoix = readlineSync.question("Choisissez le type de recharge: ");
+    switch (creditChoix) {
+      case "1":
+        this.rechargeDirecte();
+        break;
+      case "2":
+        break;
+      default:
+        console.log("Merci d’avoir utilisé notre service.");
+        process.exit(0);
+    }
+  }
+
   private buyBundle() {
-    console.log("\n1. Internet (2000 Ar)\n2. Appels (1000 Ar)\n3. SMS (500 Ar)");
+    displayCreditBundleOptions();
     const input = readlineSync.question("Choisissez un type: ");
-    let type: "internet" | "appels" | "sms";
 
     switch (input) {
       case "1":
-        type = "internet";
+        this.creditPourMonNumero();
         break;
       case "2":
-        type = "appels";
-        break;
       case "3":
-        type = "sms";
+      case "4":
+        // Implémenter si nécessaire
         break;
       default:
         console.log("Option invalide.");
         return;
     }
-
-    const cost = this.wallet.buyBundle(type);
-    console.log(`Forfait ${type} acheté pour ${cost} Ar`);
   }
 
   private unavailableFeature() {
     console.log("Cette fonctionnalité n'est pas encore disponible.");
+  }
+  private rechargeDirecte(): void {
+    displayMontantRecharger();
+    const montantStr = readlineSync.question("Montant de credit: ");
+    const montant = Number(montantStr);
+
+    if (montant > 0) {
+      this.confirmerPassword();
+    } else {
+      console.log("Montant invalide.");
+    }
+  }
+
+  private confirmerPassword(): void {
+    displayPassword();
+    const password = readlineSync.question("Entrer le password: ", { hideEchoBack: true });
+
+    if (password.length >= 4) {
+      console.log("Rechargement effectué !");
+    } else {
+      console.log("Mot de passe trop court.");
+    }
   }
 }
 
