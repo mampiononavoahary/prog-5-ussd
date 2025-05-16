@@ -1,6 +1,6 @@
 
 import * as readlineSync from 'readline-sync';
-import { Wallet } from "../core/Wallet";
+import { Wallet } from "../core/wallet";
 
 export class MainMenu {
   private wallet = new Wallet();
