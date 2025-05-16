@@ -7,6 +7,7 @@ import {
   displayCreditBundleOptions,
   displayMontantRecharger,
   displayPassword,
+  displayCodeDeRecharge,
 } from "../ui/menu-display";
 
 export class MainMenu {
@@ -70,6 +71,7 @@ export class MainMenu {
         this.rechargeDirecte();
         break;
       case "2":
+        this.codeDeRecharge();
         break;
       default:
         console.log("Merci d’avoir utilisé notre service.");
@@ -109,6 +111,15 @@ export class MainMenu {
     } else {
       console.log("Montant invalide.");
     }
+  }
+  private codeDeRecharge():void{
+   displayCodeDeRecharge();
+   const code = readlineSync.question("Entrez les 15 chiffres: ");
+   if((code.length<15) || (code.length>15)){
+      console.log("Code de recharge invalide");
+   }else{
+      console.log("Rechargement effectué!")
+   }
   }
 
   private confirmerPassword(): void {
