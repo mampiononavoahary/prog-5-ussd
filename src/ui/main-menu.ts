@@ -8,6 +8,8 @@ import {
   displayMontantRecharger,
   displayPassword,
   displayCodeDeRecharge,
+  displayCompte,
+  displayMvolaEpargneOrCredit,
 } from "../ui/menu-display";
 
 export class MainMenu {
@@ -57,7 +59,7 @@ export class MainMenu {
       console.log("Erreur:", error.message);
     }
 
-    this.show(); 
+    this.show();
   }
 
   private credit() {
@@ -157,27 +159,36 @@ export class MainMenu {
   }
 
   private mvolaCreditOuEpargne(): void {
-    console.log("Fonctionnalité 'Mvola Credit ou Epargne' en cours de développement.");
+    console.log("Selectionnez.");
+    displayMvolaEpargneOrCredit();
+    const res = readlineSync.question("Votre choix: ");
+    if (res != null) {
+      this.unavailableFeature();
+    }
   }
 
   private retraitArgent(): void {
-    console.log("Fonctionnalité 'Retrait d'argent' en cours de développement.");
+    this.unavailableFeature();
   }
 
   private paimentFacturesEtPartenaires(): void {
-    console.log("Fonctionnalité 'Paiement Factures & Partenaires' en cours de développement.");
+    this.unavailableFeature();
   }
 
   private monCompte(): void {
-    console.log("Fonctionnalité 'Mon compte' en cours de développement.");
+    displayCompte();
+    const choice = readlineSync.question("Séléctionnez: ");
+    if (choice != null) {
+      this.unavailableFeature();
+    }
   }
 
   private recevoirArgent(): void {
-    console.log("Fonctionnalité 'Recevoir de l'argent' en cours de développement.");
+    this.unavailableFeature();
   }
 
   private banquesEtMicroFinances(): void {
-    console.log("Fonctionnalité 'Banques et Micro-Finances' en cours de développement.");
+    this.unavailableFeature();
   }
 }
 

@@ -1,1 +1,9 @@
-node_modules/
+# Ignorer tous les fichiers .json à la racine
+/*.json
+
+# Ignorer le dossier de compilation TypeScript
+/dist
+
+# Ignorer les modules Node.js
+/node_modules
+

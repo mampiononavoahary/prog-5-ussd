@@ -6,6 +6,8 @@ exports.displayCreditBundleOptions = displayCreditBundleOptions;
 exports.displayMontantRecharger = displayMontantRecharger;
 exports.displayCodeDeRecharge = displayCodeDeRecharge;
 exports.displayPassword = displayPassword;
+exports.displayCompte = displayCompte;
+exports.displayMvolaEpargneOrCredit = displayMvolaEpargneOrCredit;
 function displayMainMenu() {
     console.log("\n--- MVOLA ---");
     console.log("1. Acheter Credit ou Offre Yas");
@@ -36,4 +38,15 @@ function displayCodeDeRecharge() {
 }
 function displayPassword() {
     console.log("Voulez vous recharger votre compte?.\n Pour confirmer, entrer le code secret");
+}
+function displayCompte() {
+    console.log("1 Consultation du solde");
+    console.log("2 Consulter mes 3 derniers transactions");
+    console.log("3 Recu par e-mail");
+    console.log("4 Mon adresse e-mail");
+    console.log("5 Mon repertoire Mvola");
+}
+function displayMvolaEpargneOrCredit() {
+    console.log("1 Mvola Epargne");
+    console.log("2 Mvola Credit");
 }

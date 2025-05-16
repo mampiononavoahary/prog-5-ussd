@@ -20,14 +20,22 @@ var MainMenu = /** @class */ (function () {
                     this.transfer();
                     break;
                 case "3":
-                    this.credit();
+                    this.mvolaCreditOuEpargne();
                     break;
                 case "4":
+                    this.retraitArgent();
+                    break;
                 case "5":
+                    this.paimentFacturesEtPartenaires();
+                    break;
                 case "6":
+                    this.monCompte();
+                    break;
                 case "7":
+                    this.recevoirArgent();
+                    break;
                 case "8":
-                    this.unavailableFeature();
+                    this.banquesEtMicroFinances();
                     break;
                 case "0":
                     console.log("Merci d’avoir utilisé notre service.");
@@ -40,7 +48,7 @@ var MainMenu = /** @class */ (function () {
         catch (error) {
             console.log("Erreur:", error.message);
         }
-        this.show(); // boucle continue
+        this.show();
     };
     MainMenu.prototype.credit = function () {
         var montantStr = readlineSync.question("Montant à créditer: ");
@@ -127,6 +135,33 @@ var MainMenu = /** @class */ (function () {
         }
         this.wallet.transfer(montant, numero);
         console.log("Transfert de ".concat(montant, " Ar vers le ").concat(numero, " r\u00E9ussi !"));
+    };
+    MainMenu.prototype.mvolaCreditOuEpargne = function () {
+        console.log("Selectionnez.");
+        (0, menu_display_1.displayMvolaEpargneOrCredit)();
+        var res = readlineSync.question("Votre choix: ");
+        if (res != null) {
+            this.unavailableFeature();
+        }
+    };
+    MainMenu.prototype.retraitArgent = function () {
+        this.unavailableFeature();
+    };
+    MainMenu.prototype.paimentFacturesEtPartenaires = function () {
+        this.unavailableFeature();
+    };
+    MainMenu.prototype.monCompte = function () {
+        (0, menu_display_1.displayCompte)();
+        var choice = readlineSync.question("Séléctionnez: ");
+        if (choice != null) {
+            this.unavailableFeature();
+        }
+    };
+    MainMenu.prototype.recevoirArgent = function () {
+        this.unavailableFeature();
+    };
+    MainMenu.prototype.banquesEtMicroFinances = function () {
+        this.unavailableFeature();
     };
     return MainMenu;
 }());
