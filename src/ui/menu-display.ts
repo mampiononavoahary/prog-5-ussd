@@ -23,3 +23,9 @@ export function displayCreditBundleOptions() {
   console.log("3. Offre pour mon numero");
   console.log("4. Offre pour autre numero");
 }
+export function displayMontantRecharger(){
+  console.log("Entrer le montant")
+}
+export function displayPassword(){
+  console.log("Voulez vous recharger votre compte?.\n Pour confirmer, entrer le code secret")
+}
