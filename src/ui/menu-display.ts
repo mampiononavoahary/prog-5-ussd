@@ -26,6 +26,9 @@ export function displayCreditBundleOptions() {
 export function displayMontantRecharger(){
   console.log("Entrer le montant")
 }
+export function displayCodeDeRecharge(){
+  console.log("Entrer le code de recharge")
+}
 export function displayPassword(){
   console.log("Voulez vous recharger votre compte?.\n Pour confirmer, entrer le code secret")
 }
